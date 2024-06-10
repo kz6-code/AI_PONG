@@ -21,6 +21,18 @@ var ball = {
     dy:3
 }
 
+var wristX = 0;
+var wristY = 0;
+var wrist_score = 0;
+function gotPoses(results){
+	if(results.length > 0){
+		console.log(results);
+		wristX = results[0].pose.wrist.x;
+		wristY = results[0].pose.wrist.y;
+	}
+}
+
+
 function setup(){
 	video = createCapture(VIDEO);
 	video.size(500, 500)
@@ -74,6 +86,12 @@ function draw(){
    
    //function move call which in very important
     move();
+    
+    if (wrist_score > 0.2){
+      fill('#000000')
+      stroke('#000000')
+      circle(wristX, wristY, 3)
+    }
 }
 
 
